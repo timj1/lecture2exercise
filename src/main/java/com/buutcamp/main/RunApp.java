@@ -2,9 +2,6 @@ package com.buutcamp.main;
 
 import com.buutcamp.inputhandle.HandleInput;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class RunApp {
 
