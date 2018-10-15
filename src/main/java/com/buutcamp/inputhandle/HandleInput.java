@@ -1,8 +1,13 @@
 package com.buutcamp.inputhandle;
 
+import com.buutcamp.configuration.Config;
+import com.buutcamp.interfaces.Country;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class HandleInput {
 
@@ -20,5 +25,29 @@ public class HandleInput {
 
 
         return userInput;
+    }
+
+    public boolean isValidCountry(String inputCountry) {
+        //load application context
+        AnnotationConfigApplicationContext ctx =
+                new AnnotationConfigApplicationContext(Config.class);
+
+        //get bean names
+        //String[] beanNames = ctx.getBeanDefinitionNames();
+        String[] beanNames = ctx.getBeanNamesForType(Country.class);
+
+        System.out.println(beanNames[0]);
+        //System.out.println(beanNames[0]);
+
+        //Check if inputCountry exists in the bean
+        //Names array
+        if (Arrays.asList(beanNames).contains(inputCountry)) {
+            ctx.close();
+            return true;
+        } else {
+            ctx.close();
+            return false;
+        }
+
     }
 }
